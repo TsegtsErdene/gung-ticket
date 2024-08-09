@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 
 
 const ticketRouter = require("./api/ticket");
+const mainRouter = require("./api/main")
 
 
 const app = express(bodyParser.urlencoded({ extended: true }));
@@ -29,6 +30,7 @@ app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(bodyParser.text({ type: 'text/html' }));
 
 app.use(cookieParser());
+app.use("/", mainRouter)
 app.use("/static", express.static(path.join(__dirname, "../public")));
 
 app.use("/ticket", ticketRouter);
