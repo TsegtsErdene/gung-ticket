@@ -30,7 +30,7 @@ router.get("/:data", (req, res) => {
   //   );
 
   https.get(
-    `https://api.qrserver.com/v1/create-qr-code/?size=115x115&data=${data}`,
+    `https://api.qrserver.com/v1/create-qr-code/?size=2048x2048&data=${data}`,
     (result) => {
       let img = new Stream();
       result.on("data", (chunk) => {
@@ -43,13 +43,13 @@ router.get("/:data", (req, res) => {
         fs.writeFileSync(filname, img.read());
 
         const html = fs.readFileSync(
-          path.join(__dirname, "../../views/template.html"),
+          path.join(__dirname, "../../views/teraticket.html"),
           "utf-8"
         );
 
         var options = {
-          width: "600px",
-          height: "228px",
+          width: "1060px",
+          height: "1065px",
           border: "5mm",
         };
 
